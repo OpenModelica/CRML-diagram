@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 // Generates the JavaScript CRML parser into generated/ from the grammar of the
-// language submodule, so that the diagram generator always parses what the
-// compiler parses. The ANTLR tool is downloaded into build/ once; its version
+// CRML compiler, so that the diagram generator always parses what the compiler
+// parses. The grammar is given with --grammar <crml.g4> or CRML_GRAMMAR, and is
+// found by default when this repository is the diagram-generator submodule of
+// OpenModelica/CRML. The ANTLR tool is downloaded into build/ once; its version
 // must match the antlr4 runtime in package.json.
 
 import fs from 'fs';
@@ -12,10 +14,19 @@ import { fileURLToPath } from 'url';
 const ANTLR_VERSION = '4.13.2';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const grammar = path.resolve(root, '../submodules/language/src/main/antlr/crml/language/grammar/crml.g4');
+const grammarArg = process.argv.indexOf('--grammar');
+const grammar = path.resolve(grammarArg >= 0 ? process.argv[grammarArg + 1] :
+                             process.env.CRML_GRAMMAR ||
+                             path.join(root, '../submodules/language/src/main/antlr/crml/language/grammar/crml.g4'));
 const buildDir = path.join(root, 'build');
 const outDir = path.join(root, 'generated');
 const jar = path.join(buildDir, `antlr-${ANTLR_VERSION}-complete.jar`);
+
+if (!fs.existsSync(grammar)) {
+  console.error(`The CRML grammar ${grammar} does not exist; give the crml.g4 of OpenModelica/CRML ` +
+                'with --grammar <crml.g4> or CRML_GRAMMAR.');
+  process.exit(1);
+}
 
 fs.mkdirSync(buildDir, { recursive: true });
 if (!fs.existsSync(jar)) {

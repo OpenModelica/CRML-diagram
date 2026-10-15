@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: checkout the CRML grammar
+      uses: actions/checkout@v4
+      with:
+        repository: OpenModelica/CRML
+        path: crml
+        sparse-checkout: submodules/language/src/main/antlr
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: build
+      env:
+        CRML_GRAMMAR: crml/submodules/language/src/main/antlr/crml/language/grammar/crml.g4
+      run: |
+        npm ci
+        npm run build
+    - name: test
+      run: npm test
+    - name: check that dist/crml-diagram.min.js is up to date
+      run: |
+        git diff --exit-code dist/ || {
+          echo "::error::dist/crml-diagram.min.js differs from the build; run npm run build and commit it"
+          exit 1
+        }
+    - uses: actions/upload-artifact@v4
+      with:
+        name: crml-diagram.min.js
+        path: dist/crml-diagram.min.js

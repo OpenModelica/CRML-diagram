@@ -4,11 +4,19 @@ Parses CRML files and produces **class-object/instance diagrams** in draw.io (`.
 the classes with their attributes, requirements (with their conditions) and operators, the
 top-level instances, and the associations between them.
 
-The parser is generated from the grammar of the compiler,
+The parser is generated from the grammar of the CRML compiler in
+[OpenModelica/CRML](https://github.com/OpenModelica/CRML),
 `submodules/language/src/main/antlr/crml/language/grammar/crml.g4`, so the generator always reads
 the same language as the compiler. The generator was written by Rajat Agarwal in
 [lenaRB/crml-compiler](https://github.com/lenaRB/crml-compiler/tree/DrawioDiagramGenerators)
 (`DiagramGenerators/`) and moved here with its history.
+
+This repository is a submodule of
+- [OpenModelica/CRML](https://github.com/OpenModelica/CRML), as `diagram-generator/`, where it is
+  built from the grammar of that checkout, and of
+- [OpenModelica/OpenModelica](https://github.com/OpenModelica/OpenModelica), where OMEdit shows the
+  diagram of a CRML file with the committed `dist/crml-diagram.min.js`, so that building
+  OpenModelica needs neither Node.js nor Java.
 
 ## Prerequisites
 
@@ -22,9 +30,19 @@ npm install
 npm run build
 ```
 
-`npm run generate` regenerates the parser into `generated/`, which is needed after every change of
-the grammar; `npm run bundle` writes `dist/crml-diagram.min.js` (see [In a web page](#in-a-web-page)).
-`npm run build` does both.
+Inside a CRML checkout the grammar is found on its own. Elsewhere, give it with `CRML_GRAMMAR`:
+
+```bash
+CRML_GRAMMAR=/path/to/CRML/submodules/language/src/main/antlr/crml/language/grammar/crml.g4 npm run build
+```
+
+or `npm run generate -- --grammar <crml.g4>`. `npm run generate` regenerates the parser into
+`generated/`, which is needed after every change of the grammar; `npm run bundle` writes
+`dist/crml-diagram.min.js` (see [In a web page](#in-a-web-page)). `npm run build` does both.
+
+`dist/crml-diagram.min.js` is committed: rebuild and commit it with every change of the generator
+or of the grammar. The CI builds it from the grammar of the CRML master branch and fails if the
+committed file differs.
 
 ## Usage
 
@@ -54,7 +72,7 @@ const { xml, errors } = CRMLDiagram.crmlToDrawio(text, { link: 'crml:///pumping3
 
 `errors` holds the syntax errors as `{ line, column, message }`. With the `link` option every class,
 attribute, requirement, operator and instance links to the line it is defined on, as
-`<link>?lineNumber=<line>`. OMEdit bundles this script to show the diagram of a CRML file.
+`<link>?lineNumber=<line>`. OMEdit uses this script to show the diagram of a CRML file.
 
 ## Tests
 
