@@ -89,3 +89,8 @@ rewrites the expected files; check the difference before committing it.
 - The test files use constructs that the current grammar does not accept; their diagrams show what
   could be parsed, and the errors are recorded in the expected files.
 - Classes are laid out in a grid and instances beneath them; edit the layout in draw.io if needed.
+
+## License
+
+See [OSMC-License.txt](OSMC-License.txt): the OSMC Public License (OSMC-PL) version 1.8 or the GNU AGPL version 3,
+as for [OpenModelica](https://github.com/OpenModelica/OpenModelica) and [CRML](https://github.com/OpenModelica/CRML).

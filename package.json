@@ -13,6 +13,7 @@
     "test": "node test/run.mjs"
   },
   "private": true,
+  "license": "SEE LICENSE IN OSMC-License.txt",
   "dependencies": {
     "antlr4": "4.13.2"
   },
