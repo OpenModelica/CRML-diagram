@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram id="crml-diagram" name="UML-ClassDiagram">
+    <mxGraphModel grid="1"><root>
+      <mxCell id="0"/>
+      <mxCell id="1" parent="0"/>
+      <UserObject id="2" label="" link="crml:///warehouse_automation.crml?lineNumber=14">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="240" height="230" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="3" label="&lt;b&gt;Conveyor&lt;/b&gt;" link="crml:///warehouse_automation.crml?lineNumber=14">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="4" label="ident: String" link="crml:///warehouse_automation.crml?lineNumber=15">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="5" label="speed: Real" link="crml:///warehouse_automation.crml?lineNumber=16">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="6" label="running: Boolean" link="crml:///warehouse_automation.crml?lineNumber=17">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="7" label="start: Event" link="crml:///warehouse_automation.crml?lineNumber=18">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="8" label="stop: Event" link="crml:///warehouse_automation.crml?lineNumber=19">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="9" label="R_SpeedPositive: Requirement" link="crml:///warehouse_automation.crml?lineNumber=22">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="130" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="10" label="when running then (speed &gt; 0)" link="crml:///warehouse_automation.crml?lineNumber=22">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="150" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="11" label="R_StopCount: Requirement" link="crml:///warehouse_automation.crml?lineNumber=25">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="170" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="12" label="'during' running
+      'check count' (stop 'becomes true') '&lt;=' 1" link="crml:///warehouse_automation.crml?lineNumber=25">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="190" width="240" height="40" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="13" label="" link="crml:///warehouse_automation.crml?lineNumber=30">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="380" y="60" width="240" height="130" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="14" label="&lt;b&gt;Sensor&lt;/b&gt;" link="crml:///warehouse_automation.crml?lineNumber=30">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="15" label="ident: String" link="crml:///warehouse_automation.crml?lineNumber=31">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="16" label="value: Real" link="crml:///warehouse_automation.crml?lineNumber=32">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="17" label="sample: Event" link="crml:///warehouse_automation.crml?lineNumber=33">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="18" label="R_WithinRange: Requirement" link="crml:///warehouse_automation.crml?lineNumber=34">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="19" label="(value &gt;= 0 'and' value &lt;= 100)" link="crml:///warehouse_automation.crml?lineNumber=34">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="20" label="" link="crml:///warehouse_automation.crml?lineNumber=37">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="700" y="60" width="240" height="230" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="21" label="&lt;b&gt;TemperatureSensor&lt;/b&gt;" link="crml:///warehouse_automation.crml?lineNumber=37">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="20">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="22" label="ident: String" link="crml:///warehouse_automation.crml?lineNumber=38">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="20">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="23" label="temperature: Real" link="crml:///warehouse_automation.crml?lineNumber=39">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="20">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="24" label="overheated: Boolean" link="crml:///warehouse_automation.crml?lineNumber=40">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="20">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="25" label="overheat: Event" link="crml:///warehouse_automation.crml?lineNumber=41">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="20">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="26" label="R_OverheatFires: Requirement" link="crml:///warehouse_automation.crml?lineNumber=43">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="20">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="27" label="when (temperature &gt; 80) then overheat" link="crml:///warehouse_automation.crml?lineNumber=43">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="20">
+          <mxGeometry y="130" width="240" height="40" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="28" label="R_OverheatMeaning: Requirement" link="crml:///warehouse_automation.crml?lineNumber=47">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="20">
+          <mxGeometry y="170" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="29" label="if overheated then (temperature &gt; 80) else true" link="crml:///warehouse_automation.crml?lineNumber=47">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="20">
+          <mxGeometry y="190" width="240" height="40" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="30" label="" link="crml:///warehouse_automation.crml?lineNumber=51">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="410" width="240" height="250" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="31" label="&lt;b&gt;Robot&lt;/b&gt;" link="crml:///warehouse_automation.crml?lineNumber=51">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="32" label="ident: String" link="crml:///warehouse_automation.crml?lineNumber=52">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="33" label="hasFault: Boolean" link="crml:///warehouse_automation.crml?lineNumber=53">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="34" label="enabled: Boolean" link="crml:///warehouse_automation.crml?lineNumber=54">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="35" label="start: Event" link="crml:///warehouse_automation.crml?lineNumber=55">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="36" label="stop: Event" link="crml:///warehouse_automation.crml?lineNumber=56">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="37" label="fault: Event" link="crml:///warehouse_automation.crml?lineNumber=57">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="130" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="38" label="R_StartOnlyWhenEnabled: Requirement" link="crml:///warehouse_automation.crml?lineNumber=59">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="150" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="39" label="when start then enabled" link="crml:///warehouse_automation.crml?lineNumber=59">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="170" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="40" label="R_FaultsLimited: Requirement" link="crml:///warehouse_automation.crml?lineNumber=62">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="190" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="41" label="'during' start
+      'check count' (fault 'becomes true') '&lt;=' 2" link="crml:///warehouse_automation.crml?lineNumber=62">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="30">
+          <mxGeometry y="210" width="240" height="40" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="42" label="" link="crml:///warehouse_automation.crml?lineNumber=67">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="380" y="410" width="240" height="110" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="43" label="&lt;b&gt;Controller&lt;/b&gt;" link="crml:///warehouse_automation.crml?lineNumber=67">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="42">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="44" label="ident: String" link="crml:///warehouse_automation.crml?lineNumber=68">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="42">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="45" label="hasFault: Boolean" link="crml:///warehouse_automation.crml?lineNumber=69">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="42">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="46" label="clock: Event" link="crml:///warehouse_automation.crml?lineNumber=70">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="42">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="47" label="= not" link="crml:///warehouse_automation.crml?lineNumber=73">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#F4C2C2;strokeColor=#888888;" vertex="1" parent="42">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="48" label="&lt;i&gt;R_Tick: Requirement&lt;/i&gt;" link="crml:///warehouse_automation.crml?lineNumber=76">
+        <mxCell style="shape=ellipse;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#FFF5BA;" vertex="1" parent="1">
+          <mxGeometry x="60" y="780" width="120" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+    </root></mxGraphModel>
+  </diagram>
+</mxfile>
+<!-- 18:12: mismatched input 'start' expecting IDENT -->
+<!-- 55:12: mismatched input 'start' expecting IDENT -->
+<!-- 60:11: mismatched input 'start' expecting {'{', '(', '[', ']', 'on', '.', 'true', 'false', 'undecided', 'undefined', 'time', 'trim', 'sum', 'when', 'integrate', 'duration', 'tick', 'element', 'terminate', 'evaluate', 'if', 'new', 'and', '*', '+', '-', '/', 'with', 'master', 'filter', '<=', '<', '>=', '>', '<>', 'par', '==', 'pre', 'not', 'card', 'or', '^', 'mod', 'exp', 'log', 'log10', 'cos', 'acos', 'sin', 'asin', IDENT, ITERATOR, USER_KEYWORD, STRING, UNSIGNED_NUMBER} -->
+<!-- 63:15: extraneous input 'start' expecting {'{', '(', '[', ']', 'on', '.', 'true', 'false', 'undecided', 'undefined', 'time', 'trim', 'sum', 'when', 'integrate', 'duration', 'tick', 'element', 'terminate', 'evaluate', 'if', 'new', 'and', '*', '+', '-', '/', 'with', 'master', 'filter', '<=', '<', '>=', '>', '<>', 'par', '==', 'pre', 'not', 'card', 'or', '^', 'mod', 'exp', 'log', 'log10', 'cos', 'acos', 'sin', 'asin', IDENT, ITERATOR, USER_KEYWORD, STRING, UNSIGNED_NUMBER} -->
+<!-- 73:4: extraneous input 'Operator' expecting {'}', 'parameter', 'alias', 'forbid', 'fixed', 'Integer', 'Real', 'Boolean', 'String', 'Clock', 'Set', 'Period', 'Periods', 'Event', 'Requirement', IDENT, LINE_COMMENT} -->
+<!-- 73:22: extraneous input 'isHealthy' expecting ']' -->
+<!-- 73:33: mismatched input '=' expecting {'Integer', 'Real', 'Boolean', 'String', 'Clock', 'Set', 'Period', 'Periods', 'Event', 'Requirement', IDENT, USER_KEYWORD} -->
+<!-- 81:2: mismatched input 'class' expecting <EOF> -->

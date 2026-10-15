@@ -1,9 +1,8 @@
-#!/usr/bin/env node
+// Generates a draw.io class-object diagram from CRML source text.
+// crmlToDrawio has no Node dependencies, so it is used both by the command
+// line (bin/crml-diagram.js) and, bundled, in a browser page (e.g. OMEdit).
 
 import antlr4 from 'antlr4';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
 
 const { InputStream, CommonTokenStream, tree, error } = antlr4;
 const { DefaultErrorStrategy } = error;
@@ -27,15 +26,9 @@ function escapeXml(s) {
     .replace(/>/g, '&gt;');
 }
 
-// Dynamic imports of ANTLR‑generated modules.  We derive the current
-// directory from the URL of this module to locate the lexer, parser and
-// listener files in the same tree.  Use `await import()` instead of
-// static require to work in ES modules.
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const crmlLexer = (await import(pathToFileURL(path.join(__dirname, 'antlr/crmlLexer.js')).href)).default;
-const crmlParser = (await import(pathToFileURL(path.join(__dirname, 'antlr/crmlParser.js')).href)).default;
-const crmlListener = (await import(pathToFileURL(path.join(__dirname, 'antlr/crmlListener.js')).href)).default;
+import crmlLexer from '../generated/crmlLexer.js';
+import crmlParser from '../generated/crmlParser.js';
+import crmlListener from '../generated/crmlListener.js';
 
 // Listener subclass that collects class definitions, methods, top‑level
 // instances and associations.  It also extracts requirement conditions
@@ -59,7 +52,7 @@ class UMLListener extends crmlListener {
   // later rendering of diamonds.
   exitClass_def(ctx) {
     const className = ctx.id(0).getText();
-    const clazz = { name: className, attributes: [], methods: [] };
+    const clazz = { name: className, attributes: [], methods: [], line: ctx.start.line };
     this.classes.push(clazz);
 
     ctx.class_var_def().forEach((cvar) => {
@@ -82,7 +75,7 @@ class UMLListener extends crmlListener {
         condition = this.tokens.getText(expCtx).trim();
       }
 
-      clazz.attributes.push({ name: varName, type: typeName, condition });
+      clazz.attributes.push({ name: varName, type: typeName, condition, line: cvar.start.line });
       this.associations.push({ source: className, target: typeName, type: 'association' });
     });
   }
@@ -94,7 +87,7 @@ class UMLListener extends crmlListener {
     if (!this.classes.length) return;
     const clazz = this.classes[this.classes.length - 1];
     const sig = this.tokens.getText(ctx).trim();
-    clazz.methods.push({ name: sig });
+    clazz.methods.push({ name: sig, line: ctx.start.line });
   }
 
   // Record top‑level variable definitions as instances.  We handle
@@ -131,38 +124,39 @@ class UMLListener extends crmlListener {
     const count = this.instanceCounts[key]++;
     const uniqueName = count > 0 ? `${instName}_${count}` : instName;
 
-    const inst = { name: uniqueName, type: typeName };
+    const inst = { name: uniqueName, type: typeName, line: ctx.start.line };
     if (argsText) inst.args = argsText;
     this.instances.push(inst);
     this.associations.push({ source: uniqueName, target: typeName, type: 'instanceOf' });
   }
 }
 
-// Main entry point.  Parses the input CRML file and writes out a Draw.io
-// diagram.  Class boxes are laid out in rows and columns, and their
-// heights adjust dynamically based on the length of attribute and
-// condition strings.  Instances are arranged beneath the classes.
-async function main() {
-  const inputFile = process.argv[2];
-  if (!inputFile) {
-    console.error('Usage: node instanceDiagramGeneratorWithRequirements.js <file.crml>');
-    process.exit(1);
-  }
-
-  const text = fs.readFileSync(inputFile, 'utf-8');
+// Parses CRML source text and returns { xml, errors }: a draw.io diagram and
+// the syntax errors as { line, column, message }. Class boxes are laid out in
+// rows and columns, and their heights adjust dynamically based on the length
+// of attribute and condition strings. Instances are arranged beneath the
+// classes. With options.link each cell links to the line it is defined on,
+// as `${options.link}?lineNumber=<line>`.
+export function crmlToDrawio(text, options = {}) {
+  const errors = [];
   const chars = new InputStream(text);
   const lexer = new crmlLexer(chars);
   const tokens = new CommonTokenStream(lexer);
-  tokens.fill();
   const parser = new crmlParser(tokens);
   parser.buildParseTrees = true;
   parser._errHandler = new DefaultErrorStrategy();
+  // Some CRML constructs are not fully supported by the grammar but we still
+  // want a partial parse tree, so the errors are collected, not thrown.
+  const errorListener = new (class extends antlr4.error.ErrorListener {
+    syntaxError(recognizer, symbol, line, column, message) {
+      errors.push({ line, column, message });
+    }
+  })();
+  lexer.removeErrorListeners();
+  lexer.addErrorListener(errorListener);
+  tokens.fill();
   parser.removeErrorListeners();
-  // Suppress syntax error messages; some CRML constructs are not fully
-  // supported by the grammar but we still want a partial parse tree.
-  parser.addErrorListener(new (class extends antlr4.error.ErrorListener {
-    syntaxError() {}
-  })());
+  parser.addErrorListener(errorListener);
 
   const ast = parser.definition();
   const listener = new UMLListener(tokens);
@@ -260,7 +254,7 @@ async function main() {
   // connected correctly later.
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<mxfile host="app.diagrams.net">\n';
-  xml += `  <diagram id="d${Date.now()}" name="UML-ClassDiagram">\n`;
+  xml += '  <diagram id="crml-diagram" name="UML-ClassDiagram">\n';
   xml += '    <mxGraphModel grid="1"><root>\n';
   xml += '      <mxCell id="0"/>\n';
   xml += '      <mxCell id="1" parent="0"/>\n';
@@ -268,6 +262,23 @@ async function main() {
   let idCtr = 2;
   const pos = {};
   const nextId = () => `${idCtr++}`;
+
+  // A cell, wrapped in a UserObject with a link to its source line when links
+  // are wanted; the label of a UserObject replaces the value of its cell.
+  const cell = (id, value, style, parent, geometry, line) => {
+    const valueAttr = value === undefined ? '' : ` value="${value}"`;
+    if (!options.link || !line) {
+      return `      <mxCell id="${id}"${valueAttr} style="${style}" vertex="1" parent="${parent}">\n` +
+             `        ${geometry}\n` +
+             '      </mxCell>\n';
+    }
+    const link = escapeXml(`${options.link}?lineNumber=${line}`);
+    return `      <UserObject id="${id}" label="${value === undefined ? '' : value}" link="${link}">\n` +
+           `        <mxCell style="${style}" vertex="1" parent="${parent}">\n` +
+           `          ${geometry}\n` +
+           '        </mxCell>\n' +
+           '      </UserObject>\n';
+  };
 
   // Render class boxes with dynamic heights.  For each class we create
   // a container cell, a header cell, then attribute and condition cells
@@ -286,16 +297,14 @@ async function main() {
     const cells = classCellHeights[idx] || [];
     const attHeight = cells.reduce((acc, h) => acc + h, 0);
     const totalH = hHdr + attHeight + cls.methods.length * hMth;
-    xml += `      <mxCell id="${cid}" style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=${pastelColors.class.stroke};fillColor=${pastelColors.class.fill};" vertex="1" parent="1">\n`;
-    xml += `        <mxGeometry x="${x}" y="${y}" width="${wCls}" height="${totalH}" as="geometry"/>\n`;
-    xml += '      </mxCell>\n';
+    xml += cell(cid, undefined, `umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=${pastelColors.class.stroke};fillColor=${pastelColors.class.fill};`, '1',
+                `<mxGeometry x="${x}" y="${y}" width="${wCls}" height="${totalH}" as="geometry"/>`, cls.line);
 
     // Header cell
     const hid = nextId();
     const headerLabel = escapeXml(`<b>${cls.name}</b>`);
-    xml += `      <mxCell id="${hid}" value="${headerLabel}" style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=${pastelColors.header.fill};strokeColor=${pastelColors.header.stroke};" vertex="1" parent="${cid}">\n`;
-    xml += `        <mxGeometry y="0" width="${wCls}" height="${hHdr}" as="geometry"/>\n`;
-    xml += '      </mxCell>\n';
+    xml += cell(hid, headerLabel, `text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=${pastelColors.header.fill};strokeColor=${pastelColors.header.stroke};`, cid,
+                `<mxGeometry y="0" width="${wCls}" height="${hHdr}" as="geometry"/>`, cls.line);
 
     // Render attributes and conditions.  Keep track of cumulative
     // vertical offset for each cell inside the class.  Use the
@@ -308,26 +317,23 @@ async function main() {
         const rid = nextId();
         const rLabel = escapeXml(`${a.name}: ${a.type}`);
         const reqHeight = classCellHeights[idx][cellHeightIndex++];
-        xml += `      <mxCell id="${rid}" value="${rLabel}" style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=${pastelColors.requirement.fill};strokeColor=${pastelColors.requirement.stroke};" vertex="1" parent="${cid}">\n`;
-        xml += `        <mxGeometry y="${offsetY}" width="${wCls}" height="${reqHeight}" as="geometry"/>\n`;
-        xml += '      </mxCell>\n';
+        xml += cell(rid, rLabel, `text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=${pastelColors.requirement.fill};strokeColor=${pastelColors.requirement.stroke};`, cid,
+                    `<mxGeometry y="${offsetY}" width="${wCls}" height="${reqHeight}" as="geometry"/>`, a.line);
         offsetY += reqHeight;
         // Condition
         const cid2 = nextId();
         const condLabel = escapeXml(a.condition);
         const condHeight = classCellHeights[idx][cellHeightIndex++];
-        xml += `      <mxCell id="${cid2}" value="${condLabel}" style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=${pastelColors.condition.fill};strokeColor=${pastelColors.condition.stroke};" vertex="1" parent="${cid}">\n`;
-        xml += `        <mxGeometry y="${offsetY}" width="${wCls}" height="${condHeight}" as="geometry"/>\n`;
-        xml += '      </mxCell>\n';
+        xml += cell(cid2, condLabel, `text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=${pastelColors.condition.fill};strokeColor=${pastelColors.condition.stroke};`, cid,
+                    `<mxGeometry y="${offsetY}" width="${wCls}" height="${condHeight}" as="geometry"/>`, a.line);
         offsetY += condHeight;
       } else {
         // Normal variable
         const vid = nextId();
         const vLabel = escapeXml(`${a.name}: ${a.type}`);
         const vHeight = classCellHeights[idx][cellHeightIndex++];
-        xml += `      <mxCell id="${vid}" value="${vLabel}" style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=${pastelColors.variable.fill};strokeColor=${pastelColors.variable.stroke};" vertex="1" parent="${cid}">\n`;
-        xml += `        <mxGeometry y="${offsetY}" width="${wCls}" height="${vHeight}" as="geometry"/>\n`;
-        xml += '      </mxCell>\n';
+        xml += cell(vid, vLabel, `text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=${pastelColors.variable.fill};strokeColor=${pastelColors.variable.stroke};`, cid,
+                    `<mxGeometry y="${offsetY}" width="${wCls}" height="${vHeight}" as="geometry"/>`, a.line);
         offsetY += vHeight;
       }
     });
@@ -335,9 +341,8 @@ async function main() {
     cls.methods.forEach((m, k) => {
       const mid = nextId();
       const methLabel = escapeXml(m.name);
-      xml += `      <mxCell id="${mid}" value="${methLabel}" style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=${pastelColors.method.fill};strokeColor=${pastelColors.method.stroke};" vertex="1" parent="${cid}">\n`;
-      xml += `        <mxGeometry y="${offsetY}" width="${wCls}" height="${hMth}" as="geometry"/>\n`;
-      xml += '      </mxCell>\n';
+      xml += cell(mid, methLabel, `text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=${pastelColors.method.fill};strokeColor=${pastelColors.method.stroke};`, cid,
+                  `<mxGeometry y="${offsetY}" width="${wCls}" height="${hMth}" as="geometry"/>`, m.line);
       offsetY += hMth;
     });
   });
@@ -353,9 +358,8 @@ async function main() {
     const iid = nextId();
     pos[inst.name] = iid;
     const instLabel = escapeXml(`<i>${inst.name}: ${inst.type}</i>`);
-    xml += `      <mxCell id="${iid}" value="${instLabel}" style="shape=ellipse;html=1;whiteSpace=wrap;rounded=1;strokeColor=${pastelColors.instance.stroke};fillColor=${pastelColors.instance.fill};" vertex="1" parent="1">\n`;
-    xml += `        <mxGeometry x="${x}" y="${y}" width="${wCls / 2}" height="${hHdr}" as="geometry"/>\n`;
-    xml += '      </mxCell>\n';
+    xml += cell(iid, instLabel, `shape=ellipse;html=1;whiteSpace=wrap;rounded=1;strokeColor=${pastelColors.instance.stroke};fillColor=${pastelColors.instance.fill};`, '1',
+                `<mxGeometry x="${x}" y="${y}" width="${wCls / 2}" height="${hHdr}" as="geometry"/>`, inst.line);
   });
 
   // Render associations.  Class attributes use a diamond arrow and
@@ -379,11 +383,5 @@ async function main() {
   xml += '  </diagram>\n';
   xml += '</mxfile>';
 
-  const outFile = inputFile.replace(/\.crml$/, '') + '_class_object4.drawio';
-  fs.writeFileSync(outFile, xml, 'utf-8');
-  console.log(`UML diagram with requirements written to ${outFile}`);
+  return { xml, errors };
 }
-
-main().catch((err) => {
-  console.error(err);
-});

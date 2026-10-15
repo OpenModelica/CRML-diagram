@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram id="crml-diagram" name="UML-ClassDiagram">
+    <mxGraphModel grid="1"><root>
+      <mxCell id="0"/>
+      <mxCell id="1" parent="0"/>
+      <UserObject id="2" label="" link="crml:///microgrid.crml?lineNumber=14">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="240" height="210" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="3" label="&lt;b&gt;Generator&lt;/b&gt;" link="crml:///microgrid.crml?lineNumber=14">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="4" label="ident: String" link="crml:///microgrid.crml?lineNumber=15">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="5" label="power: Real" link="crml:///microgrid.crml?lineNumber=16">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="6" label="online: Boolean" link="crml:///microgrid.crml?lineNumber=17">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="7" label="start: Event" link="crml:///microgrid.crml?lineNumber=18">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="8" label="stop: Event" link="crml:///microgrid.crml?lineNumber=19">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="9" label="R_StartupDelay: Requirement" link="crml:///microgrid.crml?lineNumber=22">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="130" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="10" label="(evaluate time at start) '&lt;=' 5" link="crml:///microgrid.crml?lineNumber=22">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="150" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="11" label="R_PowerValid: Requirement" link="crml:///microgrid.crml?lineNumber=25">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="170" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="12" label="when online then (power &gt;= 0)" link="crml:///microgrid.crml?lineNumber=25">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="190" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="13" label="" link="crml:///microgrid.crml?lineNumber=28">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="380" y="60" width="240" height="230" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="14" label="&lt;b&gt;Battery&lt;/b&gt;" link="crml:///microgrid.crml?lineNumber=28">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="15" label="ident: String" link="crml:///microgrid.crml?lineNumber=29">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="16" label="soc: Real" link="crml:///microgrid.crml?lineNumber=30">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="17" label="chargeRate: Real" link="crml:///microgrid.crml?lineNumber=31">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="18" label="chargeStart: Event" link="crml:///microgrid.crml?lineNumber=32">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="19" label="chargeStop: Event" link="crml:///microgrid.crml?lineNumber=33">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="20" label="R_SoCBounds: Requirement" link="crml:///microgrid.crml?lineNumber=35">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="130" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="21" label="(soc &gt;= 0 'and' soc &lt;= 100)" link="crml:///microgrid.crml?lineNumber=35">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="150" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="22" label="R_RateSign: Requirement" link="crml:///microgrid.crml?lineNumber=38">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="170" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="23" label="if (chargeRate &gt; 0) then (soc &lt; 100) else true" link="crml:///microgrid.crml?lineNumber=38">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="13">
+          <mxGeometry y="190" width="240" height="40" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="24" label="" link="crml:///microgrid.crml?lineNumber=42">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="700" y="60" width="240" height="130" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="25" label="&lt;b&gt;Load&lt;/b&gt;" link="crml:///microgrid.crml?lineNumber=42">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="24">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="26" label="ident: String" link="crml:///microgrid.crml?lineNumber=43">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="24">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="27" label="demand: Real" link="crml:///microgrid.crml?lineNumber=44">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="24">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="28" label="shed: Event" link="crml:///microgrid.crml?lineNumber=45">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="24">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="29" label="R_PeakLimit: Requirement" link="crml:///microgrid.crml?lineNumber=47">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="24">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="30" label="(demand &lt; 2000)" link="crml:///microgrid.crml?lineNumber=47">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="24">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="31" label="" link="crml:///microgrid.crml?lineNumber=50">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="410" width="240" height="210" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="32" label="&lt;b&gt;Inverter&lt;/b&gt;" link="crml:///microgrid.crml?lineNumber=50">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="31">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="33" label="ident: String" link="crml:///microgrid.crml?lineNumber=51">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="31">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="34" label="synced: Boolean" link="crml:///microgrid.crml?lineNumber=52">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="31">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="35" label="sync: Event" link="crml:///microgrid.crml?lineNumber=53">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="31">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="36" label="trip: Event" link="crml:///microgrid.crml?lineNumber=54">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="31">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="37" label="R_SyncSetsFlag: Requirement" link="crml:///microgrid.crml?lineNumber=56">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="31">
+          <mxGeometry y="110" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="38" label="when sync then synced" link="crml:///microgrid.crml?lineNumber=56">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="31">
+          <mxGeometry y="130" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="39" label="R_TripsLimited: Requirement" link="crml:///microgrid.crml?lineNumber=59">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="31">
+          <mxGeometry y="150" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="40" label="'during' synced 'check count' (trip 'becomes true') '&lt;=' 1" link="crml:///microgrid.crml?lineNumber=59">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="31">
+          <mxGeometry y="170" width="240" height="40" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="41" label="" link="crml:///microgrid.crml?lineNumber=63">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="380" y="410" width="240" height="110" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="42" label="&lt;b&gt;Controller&lt;/b&gt;" link="crml:///microgrid.crml?lineNumber=63">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="41">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="43" label="ident: String" link="crml:///microgrid.crml?lineNumber=64">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="41">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="44" label="safeMode: Boolean" link="crml:///microgrid.crml?lineNumber=65">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="41">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="45" label="tick1Hz: Event" link="crml:///microgrid.crml?lineNumber=66">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="41">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="46" label="= true" link="crml:///microgrid.crml?lineNumber=68">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#F4C2C2;strokeColor=#888888;" vertex="1" parent="41">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="47" label="&lt;i&gt;R_Tick: Requirement&lt;/i&gt;" link="crml:///microgrid.crml?lineNumber=69">
+        <mxCell style="shape=ellipse;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#FFF5BA;" vertex="1" parent="1">
+          <mxGeometry x="60" y="740" width="120" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+    </root></mxGraphModel>
+  </diagram>
+</mxfile>
+<!-- 18:12: mismatched input 'start' expecting IDENT -->
+<!-- 22:52: no viable alternative at input 'at start' -->
+<!-- 22:52: mismatched input 'start' expecting {'{', '(', '[', ']', 'on', '.', 'true', 'false', 'undecided', 'undefined', 'time', 'trim', 'sum', 'when', 'integrate', 'duration', 'tick', 'element', 'terminate', 'evaluate', 'if', 'new', 'and', '*', '+', '-', '/', 'with', 'master', 'filter', '<=', '<', '>=', '>', '<>', 'par', '==', 'pre', 'not', 'card', 'or', '^', 'mod', 'exp', 'log', 'log10', 'cos', 'acos', 'sin', 'asin', IDENT, ITERATOR, USER_KEYWORD, STRING, UNSIGNED_NUMBER} -->
+<!-- 68:4: extraneous input 'Operator' expecting {'}', 'parameter', 'alias', 'forbid', 'fixed', 'Integer', 'Real', 'Boolean', 'String', 'Clock', 'Set', 'Period', 'Periods', 'Event', 'Requirement', IDENT, LINE_COMMENT} -->
+<!-- 68:22: extraneous input 'isSupervising' expecting ']' -->
+<!-- 68:37: mismatched input '=' expecting {'Integer', 'Real', 'Boolean', 'String', 'Clock', 'Set', 'Period', 'Periods', 'Event', 'Requirement', IDENT, USER_KEYWORD} -->
+<!-- 73:2: mismatched input 'class' expecting <EOF> -->

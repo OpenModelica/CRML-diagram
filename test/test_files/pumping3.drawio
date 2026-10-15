@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram id="crml-diagram" name="UML-ClassDiagram">
+    <mxGraphModel grid="1"><root>
+      <mxCell id="0"/>
+      <mxCell id="1" parent="0"/>
+      <UserObject id="2" label="" link="crml:///pumping3.crml?lineNumber=8">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="240" height="410" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="3" label="&lt;b&gt;Pump&lt;/b&gt;" link="crml:///pumping3.crml?lineNumber=8">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="4" label="ident: String" link="crml:///pumping3.crml?lineNumber=9">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="5" label="isStarted: Boolean" link="crml:///pumping3.crml?lineNumber=10">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="6" label="temperature: Real" link="crml:///pumping3.crml?lineNumber=11">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="70" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="7" label="R1: Requirement" link="crml:///pumping3.crml?lineNumber=14">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="90" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="8" label="'during' system.inOperation 'check count' (pump.isStarted 'becomes true') '&lt;=' 2" link="crml:///pumping3.crml?lineNumber=14">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="110" width="240" height="60" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="9" label="R2: Requirement" link="crml:///pumping3.crml?lineNumber=17">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="170" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="10" label="'after' pump.isStarted 'for' 1*h 'check count' (pump.isStarted 'becomes true') '==' 0" link="crml:///pumping3.crml?lineNumber=17">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="190" width="240" height="60" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="11" label="R3: Requirement" link="crml:///pumping3.crml?lineNumber=20">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="250" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="12" label="'during' pump.isStarted 'ensure' pump.temperature &lt; 50*degC" link="crml:///pumping3.crml?lineNumber=20">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="270" width="240" height="40" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="13" label="R4: Requirement" link="crml:///pumping3.crml?lineNumber=24">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#FFDAC1;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="310" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="14" label="'during' system.inOperation 'after' pump.temperature &gt; 40*degC 'for' 15*mn 
+					'check duration' (pump.temperature &gt; 40*degC) '&lt;' 1*mn" link="crml:///pumping3.crml?lineNumber=24">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=top;align=left;fillColor=#FFE4B5;strokeColor=#888888;" vertex="1" parent="2">
+          <mxGeometry y="330" width="240" height="80" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="15" label="" link="crml:///pumping3.crml?lineNumber=29">
+        <mxCell style="umlClass;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#AEC6CF;" vertex="1" parent="1">
+          <mxGeometry x="380" y="60" width="240" height="70" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="16" label="&lt;b&gt;System&lt;/b&gt;" link="crml:///pumping3.crml?lineNumber=29">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;fillColor=#AEC6CF;strokeColor=#888888;" vertex="1" parent="15">
+          <mxGeometry y="0" width="240" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="17" label="pumps: Pump{}" link="crml:///pumping3.crml?lineNumber=30">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="15">
+          <mxGeometry y="30" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="18" label="inOperation: Boolean" link="crml:///pumping3.crml?lineNumber=31">
+        <mxCell style="text;html=1;whiteSpace=wrap;verticalAlign=middle;align=left;fillColor=#E8DAEF;strokeColor=#888888;" vertex="1" parent="15">
+          <mxGeometry y="50" width="240" height="20" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="19" label="&lt;i&gt;system: System&lt;/i&gt;" link="crml:///pumping3.crml?lineNumber=34">
+        <mxCell style="shape=ellipse;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#FFF5BA;" vertex="1" parent="1">
+          <mxGeometry x="60" y="590" width="120" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="20" label="&lt;i&gt;ident: Pump&lt;/i&gt;" link="crml:///pumping3.crml?lineNumber=34">
+        <mxCell style="shape=ellipse;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#FFF5BA;" vertex="1" parent="1">
+          <mxGeometry x="260" y="590" width="120" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="21" label="&lt;i&gt;ident_1: Pump&lt;/i&gt;" link="crml:///pumping3.crml?lineNumber=34">
+        <mxCell style="shape=ellipse;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#FFF5BA;" vertex="1" parent="1">
+          <mxGeometry x="60" y="660" width="120" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <UserObject id="22" label="&lt;i&gt;ident_2: Pump&lt;/i&gt;" link="crml:///pumping3.crml?lineNumber=34">
+        <mxCell style="shape=ellipse;html=1;whiteSpace=wrap;rounded=1;strokeColor=#888888;fillColor=#FFF5BA;" vertex="1" parent="1">
+          <mxGeometry x="260" y="660" width="120" height="30" as="geometry"/>
+        </mxCell>
+      </UserObject>
+      <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;strokeColor=#888888;" edge="1" parent="1" source="19" target="15">
+        <mxGeometry relative="1" as="geometry"/>
+      </mxCell>
+      <mxCell id="24" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;strokeColor=#888888;" edge="1" parent="1" source="20" target="2">
+        <mxGeometry relative="1" as="geometry"/>
+      </mxCell>
+      <mxCell id="25" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;strokeColor=#888888;" edge="1" parent="1" source="21" target="2">
+        <mxGeometry relative="1" as="geometry"/>
+      </mxCell>
+      <mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;dashed=1;strokeColor=#888888;" edge="1" parent="1" source="22" target="2">
+        <mxGeometry relative="1" as="geometry"/>
+      </mxCell>
+    </root></mxGraphModel>
+  </diagram>
+</mxfile>
+<!-- 34:25: mismatched input '{' expecting ';' -->
+<!-- 34:32: extraneous input '(' expecting IDENT -->
+<!-- 34:39: mismatched input '=' expecting {'is', ';', '('} -->
+<!-- 34:55: extraneous input '(' expecting IDENT -->
+<!-- 34:62: mismatched input '=' expecting {'is', ';', '('} -->
+<!-- 34:77: extraneous input '(' expecting IDENT -->
+<!-- 34:84: mismatched input '=' expecting {'is', ';', '('} -->
+<!-- 35:0: mismatched input '}' expecting <EOF> -->
